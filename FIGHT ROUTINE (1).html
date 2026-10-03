@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>FIGHT ROUTINE</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0b0b0d;--card:#16161a;--tx:#f2f2f2;--mut:#9a9aa3;--red:#d4202a;--gold:#c9a24b;--line:#2a2a31;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#f6f4ef;--card:#fff;--tx:#17171a;--mut:#62626b;--line:#ddd8cc}}
+:root[data-theme="light"]{--bg:#f6f4ef;--card:#fff;--tx:#17171a;--mut:#62626b;--line:#ddd8cc}
+:root[data-theme="dark"]{--bg:#0b0b0d;--card:#16161a;--tx:#f2f2f2;--mut:#9a9aa3;--line:#2a2a31}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:Inter,system-ui,sans-serif;line-height:1.55}
+h1,h2,h3{font-family:Oswald,Impact,sans-serif;text-transform:uppercase;letter-spacing:.04em;margin:0}
+.wrap{max-width:1000px;margin:0 auto;padding:0 20px}
+.hero{padding:72px 0 56px;text-align:center;background:radial-gradient(ellipse at top,rgba(212,32,42,.28),transparent 60%)}
+.belt{height:10px;width:220px;margin:0 auto 28px;background:linear-gradient(90deg,#111 0 78%,var(--red) 78% 88%,#111 88%);border:1px solid var(--line);border-radius:3px}
+.hero h1{font-size:clamp(44px,10vw,92px);line-height:1}
+.hero h1 span{color:var(--red)}
+.hero p{max-width:560px;margin:18px auto 28px;color:var(--mut);font-size:18px}
+.btn{display:inline-block;background:var(--red);color:#fff;border:0;padding:14px 30px;font:700 16px Oswald,sans-serif;letter-spacing:.08em;text-transform:uppercase;border-radius:4px;cursor:pointer;text-decoration:none}
+.btn:hover{filter:brightness(1.15)}
+section{padding:48px 0}
+h2{font-size:32px;margin-bottom:8px}
+h2::after{content:"";display:block;width:56px;height:4px;background:var(--gold);margin-top:8px}
+.sub{color:var(--mut);margin:12px 0 24px}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:18px}
+.card h3{font-size:18px;color:var(--gold);margin-bottom:6px}
+.card p{margin:0;color:var(--mut);font-size:15px}
+.opt{cursor:pointer;text-align:left;color:var(--tx);font:inherit}
+.opt.on{border-color:var(--red);box-shadow:0 0 0 2px var(--red) inset}
+.row{margin-bottom:22px}
+.row label{display:block;font:500 15px Oswald,sans-serif;letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px}
+.pill{display:inline-block;margin:0 8px 8px 0;padding:9px 18px;border:1px solid var(--line);background:var(--card);color:var(--tx);border-radius:30px;cursor:pointer;font:inherit}
+.pill.on{background:var(--red);border-color:var(--red);color:#fff}
+.scroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:560px}
+th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line);font-size:15px;vertical-align:top}
+th{font:500 14px Oswald,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--gold)}
+td:first-child{font-weight:600;white-space:nowrap}
+.two{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+ul{margin:8px 0 0;padding-left:20px;color:var(--mut)}
+li{margin-bottom:6px}
+.note{font-size:13px;color:var(--mut);border-left:3px solid var(--red);padding-left:12px;margin-top:20px}
+footer{padding:32px 0;text-align:center;color:var(--mut);border-top:1px solid var(--line);font-size:14px}
+.bar{height:10px;background:var(--line);border-radius:6px;overflow:hidden;margin:6px 0 4px}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--red),var(--gold));transition:width .4s}
+tr.tr{cursor:pointer}tr.tr:hover{background:rgba(212,32,42,.08)}
+tr.det td{background:rgba(201,162,75,.07);color:var(--mut);font-weight:400;white-space:normal}
+tr.done td{opacity:.55}
+.ck{width:20px;height:20px;accent-color:var(--red);cursor:pointer}
+.timer{text-align:center}
+.clock{font:700 clamp(64px,16vw,120px) Oswald,sans-serif;line-height:1;margin:10px 0;transition:color .3s}
+.clock.rest{color:var(--gold)}.clock.fight{color:var(--red)}
+.btn.alt{background:transparent;border:1px solid var(--line);color:var(--tx)}
+.ctl{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:12px}
+.water{display:flex;align-items:center;gap:10px;margin-top:14px;flex-wrap:wrap}
+.cup{font-size:22px;opacity:.25;cursor:pointer}.cup.on{opacity:1}
+.fade{opacity:0;transform:translateY(16px);transition:.6s}.fade.in{opacity:1;transform:none}
+.fin{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));margin-bottom:18px}
+.fin label{display:block;font:500 14px Oswald,sans-serif;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
+.fin input,.fin textarea{width:100%;padding:12px;border-radius:6px;border:1px solid var(--line);background:var(--card);color:var(--tx);font:inherit}
+.fin textarea{min-height:84px;resize:vertical}
+.ai{white-space:normal;margin-top:20px;border-color:var(--gold)}
+.ai h3{margin:14px 0 6px}.ai ul{color:var(--tx)}.ai p{margin:6px 0}
+.cur{opacity:.5;animation:bl 1s infinite}@keyframes bl{50%{opacity:0}}
+</style>
+</head>
+<body>
+<header class="hero"><div class="wrap">
+<div class="belt"></div>
+<h1>Fight <span>Routine</span></h1>
+<p>Treino, dieta e recuperação organizados para o seu objetivo no jiu-jitsu. Do tatame à competição.</p>
+<a class="btn" href="#plano">Montar minha rotina</a>
+</div></header>
+
+<section><div class="wrap">
+<h2>Como funciona</h2>
+<div class="grid" style="margin-top:20px">
+<div class="card"><h3>1. Objetivo</h3><p>Escolha o que você quer alcançar: competir, ganhar força, perder peso ou evoluir no jogo.</p></div>
+<div class="card"><h3>2. Nível e tempo</h3><p>Informe sua faixa e quantos dias por semana você consegue treinar.</p></div>
+<div class="card"><h3>3. Sua rotina</h3><p>Receba a semana de treinos e as diretrizes de alimentação para o seu momento.</p></div>
+</div>
+</div></section>
+
+<section id="plano"><div class="wrap">
+<h2>Monte sua rotina</h2>
+<p class="sub">Selecione suas opções e o plano aparece logo abaixo.</p>
+<div class="row"><label>Objetivo</label><div id="g-obj"></div></div>
+<div class="row"><label>Nível</label><div id="g-lvl"></div></div>
+<div class="row"><label>Dias de treino por semana</label><div id="g-days"></div></div>
+
+<div id="out" style="display:none">
+<h2 style="margin-top:36px">Treinos da semana</h2>
+<p class="sub" style="margin-bottom:6px">Toque em um dia para ver a estrutura da sessão e marque os treinos concluídos.</p>
+<div class="bar"><i id="pb"></i></div><div id="pt" class="sub" style="margin:0 0 10px"></div>
+<div class="card scroll" style="margin-top:20px"><table><thead><tr><th></th><th>Dia</th><th>Foco</th><th>Detalhes</th></tr></thead><tbody id="tb"></tbody></table></div>
+<h2 style="margin-top:44px">Alimentação</h2>
+<div class="two" style="margin-top:20px">
+<div class="card"><h3>Diretrizes</h3><ul id="diet"></ul></div>
+<div class="card"><h3>Dia de exemplo</h3><ul id="meals"></ul><div class="water"><b>Água:</b><span id="cups"></span><span id="wt" style="color:var(--mut)"></span></div></div>
+</div>
+<p class="note">Sugestões gerais para orientar sua organização. Não substituem acompanhamento de nutricionista, médico e do seu professor, principalmente para ajustes de peso e lesões.</p>
+</div>
+</div></section>
+
+<section id="ia"><div class="wrap"><h2>Rotina com IA conforme seu bolso</h2>
+<p class="sub">Conte sua condição financeira e a IA adapta treino e alimentação ao que você realmente consegue pagar. Os valores ficam só nesta tela e não são salvos.</p>
+<div class="fin">
+<div><label for="f-renda">Renda mensal (R$)</label><input id="f-renda" type="number" min="0" inputmode="numeric" placeholder="ex.: 2500"></div>
+<div><label for="f-comida">Orçamento p/ alimentação (R$/mês)</label><input id="f-comida" type="number" min="0" inputmode="numeric" placeholder="ex.: 600"></div>
+<div><label for="f-treino">Orçamento p/ treino (R$/mês)</label><input id="f-treino" type="number" min="0" inputmode="numeric" placeholder="mensalidade, kimono, suplementos"></div>
+</div>
+<div class="row"><label>Onde você treina</label><div id="g-loc"></div></div>
+<div class="fin"><div style="grid-column:1/-1"><label for="f-obs">Observações (opcional)</label><textarea id="f-obs" placeholder="Horário disponível, lesões, alimentos que não come, categoria de peso, data de campeonato..."></textarea></div></div>
+<button class="btn" id="ia-go">Gerar rotina com IA</button>
+<div class="card ai" id="ia-out" style="display:none"></div>
+</div></section>
+<section id="timer"><div class="wrap fade"><h2>Cronômetro de rounds</h2>
+<p class="sub">Ajuste os tempos e treine rolas no ritmo de luta.</p>
+<div class="card timer">
+<div class="row" style="margin-bottom:8px"><span class="pill on" data-r="300">Luta 5 min</span><span class="pill" data-r="360">6 min</span><span class="pill" data-r="480">8 min</span><span class="pill" data-r="600">10 min</span></div>
+<div id="mode" style="font:500 18px Oswald;letter-spacing:.1em;text-transform:uppercase;color:var(--mut)">Pronto</div>
+<div class="clock" id="clk">05:00</div>
+<div id="rnd" style="color:var(--mut)">Round 1</div>
+<div class="ctl"><button class="btn" id="go">Iniciar</button><button class="btn alt" id="rs">Zerar</button></div>
+</div></div></section>
+<footer><div class="wrap">FIGHT ROUTINE · Disciplina no tatame, constância na rotina. OSS 🥋</div></footer>
+
+<script>
+const OBJ={
+comp:{n:"Competição",d:"Preparar para campeonato",foco:["Sparring de ritmo de luta","Técnica + situacionais","Condicionamento específico","Drills e posições de campeonato"],
+ diet:["Priorize carboidratos de boa qualidade nos dias de treino pesado","Proteína em todas as refeições para recuperação","Hidratação constante, principalmente em semanas de luta","Teste sua alimentação de dia de luta nos treinos, nunca invente no campeonato"],
+ meals:["Café: ovos, pão integral, fruta","Pré-treino: banana, aveia ou arroz com algo leve","Pós-treino: proteína + carboidrato (frango, arroz, legumes)","Jantar: peixe ou carne magra, batata, salada"]},
+forca:{n:"Força e massa",d:"Ficar mais forte e pesado",foco:["Treino de força (puxadas, agachamento, levantamento)","Técnica e drills","Sparring leve a moderado","Mobilidade e core"],
+ diet:["Alimentação com leve excesso de energia para sustentar o ganho","Proteína distribuída ao longo do dia","Carboidratos ao redor dos treinos","Sono em dia, é onde o músculo se recupera"],
+ meals:["Café: ovos, aveia, leite ou iogurte, fruta","Almoço: arroz, feijão, carne, legumes","Lanche: sanduíche com frango ou atum, fruta","Pós-treino: shake ou refeição completa com proteína"]},
+peso:{n:"Emagrecimento saudável",d:"Reduzir gordura mantendo desempenho",foco:["Treino técnico com rolas contínuas","Cardio moderado e circuito","Força geral 2x na semana","Caminhada ou treino leve de recuperação"],
+ diet:["Déficit pequeno e gradual, sem cortes drásticos","Mantenha proteína alta para preservar massa magra","Priorize comida de verdade: legumes, frutas, grãos integrais","Não treine em jejum prolongado nem desidrate para perder peso; procure um nutricionista"],
+ meals:["Café: ovos, fruta, pão integral","Almoço: prato com metade de legumes, proteína e porção de arroz/feijão","Lanche: iogurte natural ou fruta com oleaginosas","Jantar: proteína magra com legumes"]},
+tec:{n:"Evolução técnica",d:"Melhorar o jogo e aprender mais",foco:["Aula técnica e repetição de movimentos","Posicional e rola com foco em um tema","Estudo de vídeo e game plan","Treino leve e flexibilidade"],
+ diet:["Alimentação equilibrada e regular","Evite treinar com fome para manter foco e aprendizado","Hidratação ao longo do dia","Refeição leve 1 a 2 horas antes de treinar"],
+ meals:["Café: pão, ovos, fruta","Almoço: arroz, feijão, proteína, salada","Pré-treino: fruta e algo leve","Jantar: refeição completa e leve"]}};
+const LV={ini:"Iniciante (branca)",int:"Intermediário (azul/roxa)",av:"Avançado (marrom/preta)"};
+const LVN={ini:"Intensidade baixa a moderada, priorize aprender e descansar.",int:"Intensidade moderada, inclua rolas mais intensas 1 a 2x.",av:"Intensidade alta, com semanas de carga e semanas de recuperação."};
+const DIAS=["Segunda","Terça","Quarta","Quinta","Sexta","Sábado","Domingo"];
+const PATT={2:[0,3],3:[0,2,4],4:[0,1,3,4],5:[0,1,2,3,5],6:[0,1,2,3,4,5]};
+let st={obj:"comp",lvl:"int",days:4};
+function pills(id,items,key){const el=document.getElementById(id);el.innerHTML="";items.forEach(([v,t])=>{const b=document.createElement("button");b.className="pill"+(st[key]==v?" on":"");b.textContent=t;b.onclick=()=>{st[key]=v;render();pills(id,items,key)};el.appendChild(b)})}
+function render(){
+ const o=OBJ[st.obj],pat=PATT[st.days],tb=document.getElementById("tb");tb.innerHTML="";
+ DIAS.forEach((d,i)=>{const k=pat.indexOf(i);let f,det;
+  if(k>=0){f=o.foco[k%o.foco.length];det=k==pat.length-1?"Treino mais intenso da semana. "+LVN[st.lvl]:"Aquecimento, técnica e rolas conforme o foco.";}
+  else{f="Descanso";det="Recuperação ativa: alongamento, caminhada, sono e hidratação.";}
+  tb.insertAdjacentHTML("beforeend",`<tr><td>${d}</td><td>${f}</td><td>${det}</td></tr>`)});
+ document.getElementById("diet").innerHTML=o.diet.map(x=>`<li>${x}</li>`).join("");
+ document.getElementById("meals").innerHTML=o.meals.map(x=>`<li>${x}</li>`).join("");
+ document.getElementById("out").style.display="block";
+}
+function init(){
+ pills("g-obj",Object.entries(OBJ).map(([k,v])=>[k,v.n]),"obj");
+ pills("g-lvl",Object.entries(LV),"lvl");
+ pills("g-days",[2,3,4,5,6].map(n=>[n,n+" dias"]),"days");
+ render();
+}
+init();
+document.querySelectorAll("#g-obj,#g-lvl,#g-days").forEach(e=>e.addEventListener("click",()=>{pills("g-obj",Object.entries(OBJ).map(([k,v])=>[k,v.n]),"obj");pills("g-lvl",Object.entries(LV),"lvl");pills("g-days",[2,3,4,5,6].map(n=>[n,n+" dias"]),"days")}));
+
+/* interatividade */
+let done={};const KEY=()=>st.obj+st.lvl+st.days;
+try{done=JSON.parse(localStorage.getItem("fr_done")||"{}")}catch(e){}
+function sv(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+const STR=["Aquecimento e mobilidade (10 min)","Técnica do dia com drills (30 min)","Rolas / sparring conforme o foco (20 min)","Volta à calma e alongamento (5 min)"];
+function prog(){const n=PATT[st.days].length,c=PATT[st.days].filter(i=>done[KEY()+i]).length;
+ document.getElementById("pb").style.width=(c/n*100)+"%";
+ document.getElementById("pt").textContent=c+" de "+n+" treinos concluídos"+(c==n?" 🔥 Semana fechada, OSS!":"");}
+const _r=render;
+render=function(){_r();
+ const pat=PATT[st.days];
+ [...document.querySelectorAll("#tb tr")].forEach((tr,i)=>{
+  tr.insertAdjacentHTML("afterbegin","<td></td>");
+  if(pat.includes(i)){tr.className="tr"+(done[KEY()+i]?" done":"");
+   tr.firstChild.innerHTML='<input type="checkbox" class="ck"'+(done[KEY()+i]?" checked":"")+'>';
+   const ck=tr.querySelector(".ck");
+   ck.onclick=e=>{e.stopPropagation();done[KEY()+i]=ck.checked;sv("fr_done",JSON.stringify(done));tr.classList.toggle("done",ck.checked);prog()};
+   tr.onclick=()=>{const nx=tr.nextElementSibling;if(nx&&nx.classList.contains("det")){nx.remove();return}
+    tr.insertAdjacentHTML("afterend",'<tr class="det"><td></td><td colspan="3"><b>Estrutura da sessão:</b><br>'+STR.join("<br>")+'</td></tr>')}}
+ });
+ prog();
+};
+render();
+/* água */
+let cups=0;
+function drawCups(){const c=document.getElementById("cups");c.innerHTML="";
+ for(let i=1;i<=8;i++){const s=document.createElement("span");s.className="cup"+(i<=cups?" on":"");s.textContent="💧";s.onclick=()=>{cups=(cups==i?i-1:i);drawCups()};c.appendChild(s)}
+ document.getElementById("wt").textContent=cups+"/8 copos";}
+drawCups();
+/* cronômetro */
+let fight=300,left=300,rest=false,round=1,iv=null;
+const fmt=t=>String(Math.floor(t/60)).padStart(2,"0")+":"+String(t%60).padStart(2,"0");
+function paint(){const c=document.getElementById("clk");c.textContent=fmt(left);c.className="clock "+(iv?(rest?"rest":"fight"):"");
+ document.getElementById("mode").textContent=iv?(rest?"Descanso":"Luta!"):(left==fight&&!rest?"Pronto":"Pausado");
+ document.getElementById("rnd").textContent="Round "+round;
+ document.getElementById("go").textContent=iv?"Pausar":"Iniciar";}
+function tick(){left--;if(left<=0){if(navigator.vibrate)try{navigator.vibrate(300)}catch(e){}
+  if(rest){rest=false;round++;left=fight}else{rest=true;left=60}}paint()}
+document.getElementById("go").onclick=()=>{if(iv){clearInterval(iv);iv=null}else iv=setInterval(tick,1000);paint()};
+document.getElementById("rs").onclick=()=>{clearInterval(iv);iv=null;rest=false;round=1;left=fight;paint()};
+document.querySelectorAll("[data-r]").forEach(b=>b.onclick=()=>{document.querySelectorAll("[data-r]").forEach(x=>x.classList.remove("on"));b.classList.add("on");fight=+b.dataset.r;document.getElementById("rs").click()});
+paint();
+/* revelar ao rolar */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add("in")}),{threshold:.1});
+document.querySelectorAll("section .wrap").forEach(w=>{w.classList.add("fade");io.observe(w)});
+
+/* IA financeira */
+let loc="Academia paga";
+function locPills(){const el=document.getElementById("g-loc");el.innerHTML="";
+ ["Academia paga","Projeto social / gratuito","Em casa / ao ar livre"].forEach(t=>{const b=document.createElement("button");b.className="pill"+(loc==t?" on":"");b.textContent=t;b.onclick=()=>{loc=t;locPills()};el.appendChild(b)})}
+locPills();
+const esc=t=>t.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+function md(t){let h="",open=false;
+ t.split("\n").forEach(l=>{l=esc(l).replace(/\*\*(.+?)\*\*/g,"<b>$1</b>");
+  if(/^\s*[-*] /.test(l)){if(!open){h+="<ul>";open=true}h+="<li>"+l.replace(/^\s*[-*] /,"")+"</li>"}
+  else{if(open){h+="</ul>";open=false}
+   if(/^#+ /.test(l))h+="<h3>"+l.replace(/^#+ /,"")+"</h3>";else if(l.trim())h+="<p>"+l+"</p>"}});
+ return h+(open?"</ul>":"")}
+let sampleFn=undefined,ctl=null;
+(async()=>{try{sampleFn=await claude.use("sample")}catch(e){sampleFn=null}
+ if(!sampleFn)document.getElementById("ia-go").style.display="none";})();
+document.getElementById("ia-go").onclick=async()=>{
+ const out=document.getElementById("ia-out");out.style.display="block";
+ if(!sampleFn){out.textContent="A IA não está disponível neste momento.";return}
+ const v=id=>document.getElementById(id).value.trim()||"não informado";
+ const o=OBJ[st.obj];
+ const prompt=`Você é um treinador de jiu-jitsu e planejador de rotina esportiva no Brasil. Monte uma rotina semanal ADAPTADA à condição financeira do atleta, em português, direta e motivadora.
+Dados do atleta:
+- Objetivo: ${o.n} (${o.d})
+- Nível: ${LV[st.lvl]}
+- Dias de treino por semana: ${st.days}
+- Renda mensal: R$ ${v("f-renda")}
+- Orçamento mensal para alimentação: R$ ${v("f-comida")}
+- Orçamento mensal para treino (mensalidade, kimono, suplementos): R$ ${v("f-treino")}
+- Onde treina: ${loc}
+- Observações: ${v("f-obs")}
+Entregue com estes títulos em markdown: "Resumo da sua situação", "Treinos da semana" (dia a dia, incluindo opções gratuitas para os dias sem aula), "Alimentação econômica" (comidas baratas e comuns no Brasil, exemplo de dia e dicas de compra), "Onde economizar sem perder rendimento", "Próximos passos".
+Regras: respeite o orçamento informado, não recomende suplementos caros se o orçamento for apertado, sem dietas extremas, sem corte de peso por desidratação, e lembre de procurar nutricionista, médico e o professor para ajustes de peso e lesões. Se algum valor não foi informado, assuma um cenário modesto e avise.`;
+ ctl=new AbortController();const btn=document.getElementById("ia-go");btn.disabled=true;btn.textContent="Gerando...";
+ out.innerHTML='<span class="cur">Montando sua rotina...</span>';
+ try{const r=await sampleFn(prompt,{signal:ctl.signal,cache:false,onText:({text})=>{out.innerHTML=md(text)+'<span class="cur">▍</span>'}});
+  out.innerHTML=md(r.text)}
+ catch(e){out.textContent=e&&e.code==="not_granted"?"Você precisa permitir o uso da IA para gerar a rotina.":e&&e.code==="rate_limited"?"Muitas tentativas. Aguarde um pouco e tente de novo.":"Não consegui gerar agora. Tente novamente."}
+ btn.disabled=false;btn.textContent="Gerar rotina com IA";};
+</script>
+</body>
+</html>
